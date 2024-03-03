@@ -10,35 +10,35 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Department extends Model
 {
-	use HasFactory;
+    use HasFactory;
 
-	protected $fillable = [
-		'name',
-		'slug',
-		'banner',
-		'title',
-		'entry',
-		'img',
-		'active',
-	];
+    protected $fillable = [
+        'name',
+        'slug',
+        'banner',
+        'title',
+        'entry',
+        'img',
+        'active',
+    ];
 
-	public function products(): HasMany
-	{
-		return $this->hasMany(Product::class);
-	}
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 
-	public function categories(): BelongsToMany
-	{
-		return $this->belongsToMany(Category::class);
-	}
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
 
-	public function categories_active(): HasMany
-	{
-		return $this->hasMany(Category::class)->where('active', true);
-	}
+    public function categories_active(): HasMany
+    {
+        return $this->hasMany(Category::class)->where('active', true);
+    }
 
-	public function scopeActive(Builder $query): void
-	{
-		$query->where('active', 1);
-	}
+    public function scopeActive(Builder $query): void
+    {
+        $query->where('active', 1);
+    }
 }
