@@ -10,7 +10,7 @@
     "rates": {
         "tax": 12,
         "shipping": 8,
-        "freeShipping": "100"
+        "freeShipping": "300000"
     },
     "social": {
         "facebook": "https:\/\/www.facebook.com\/Newegg",
