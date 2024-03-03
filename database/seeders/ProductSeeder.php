@@ -40,8 +40,8 @@ class ProductSeeder extends Seeder
         //$brands = Brand::get();
 
         $categories = Category::select('id', 'name')->get()->pluck('id', 'name');
-
         $departments = Department::select('id', 'name')->get()->pluck('id', 'name');
+        $brands = Brand::select('id', 'name')->get()->pluck('id', 'name');
 
         $products = collect(Storage::json("data/products_with_images.json"))->shuffle();
 
@@ -71,7 +71,7 @@ class ProductSeeder extends Seeder
                     'img' => $product['img'],
                     'thumb' => $product['thumb'],
                     //'description_min' => $product['entry'],
-                    'description_max' => $product['desc'],
+                    // 'description_max' => $product['desc'],
                     'price' => $price,
                     'offer' => $offer,
                     'price_offer' => $price_offer,
@@ -79,7 +79,7 @@ class ProductSeeder extends Seeder
                     'department_id' => $departments[$product['department']],
                     'category_id' => $categories[$product['category']],
                     'sub_category_id' => null,
-                    'brand_id' => null //$brands[$product['brand']],
+                    'brand_id' => $brands[$product['brand']],
                 ]);
 
             $product_model->images()->createMany($product['images']);

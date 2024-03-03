@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
                     $user->assignRole('client');
                 });
         } else {
-            User::factory()->count(100)->create()
+            User::factory()->count(10)->create()
                 ->each(function (User $user) {
                     $user->assignRole('client');
                 });

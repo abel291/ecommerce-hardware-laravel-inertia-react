@@ -21,30 +21,42 @@ class CategorySeeder extends Seeder
     {
         Category::truncate();
         Department::truncate();
-        $data = Storage::json("data/department_categories.json");
 
-        foreach ($data['categories'] as $key => $category) {
-            Category::create($category);
-        }
+        $products = collect(Storage::json('data/products_with_images.json'));
 
-        $categories = Category::select('id', 'slug')->get();
+        $departments = $products->pluck('department')->unique()->map(function ($item) {
 
-        foreach ($data['departments'] as $department) {
-
-            $department_model = Department::factory()->create([
-                'name' => $department['name'],
-                'slug' => $department['slug'],
-                'entry' => $department['entry'],
-                'meta_title' => $department['meta_title'],
-                'img' => $department['img'],
+            $slug = Str::slug($item);
+            return Department::factory()->make([
+                'name' => $item,
+                'slug' => $slug,
+                'img' => "img/departments/$slug.png",
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
+        });
 
-            $categories_department_id = $categories->whereIn('slug', $department['categories'])->pluck('id')->values();
+        Department::insert($departments->toArray());
 
-            $department_model->categories()->sync($categories_department_id);
-        }
+        //////////////////////////////////
 
-        //blog
+        $departments = Department::select('id', 'name')->get()->pluck('id', 'name');
+
+        $categories = $products->unique('category')->map(function ($item) use ($departments) {
+
+            $slug = Str::slug($item['category']);
+            return Category::factory()->make([
+                'name' => $item['category'],
+                'slug' => $slug,
+                'img' => "img/categories/$slug.png",
+                'created_at' => now(),
+                'updated_at' => now(),
+                'department_id' => $departments[$item['department']]
+            ]);
+        });
+
+        Category::insert($categories->toArray());
+
         Category::factory()->count(5)->create([
             'type' => 'blog'
         ]);
