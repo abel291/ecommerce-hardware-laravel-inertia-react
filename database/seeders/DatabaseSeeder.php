@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
         Cache::flush();
         Schema::disableForeignKeyConstraints();
-
+        Image::truncate();
         $this->call([
             // JsonDataSeeder::class,
             UserSeeder::class,
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             BlogSeeder::class,
             ProductSeeder::class,
-            // OrderSeeder::class,
+            OrderSeeder::class,
 
         ]);
         Schema::enableForeignKeyConstraints();

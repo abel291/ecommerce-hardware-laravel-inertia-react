@@ -30,7 +30,7 @@ class PageSeeder extends Seeder
                     'type' => 'carousel',
                     'sort' => 1,
                     'position' => 'top',
-                    'link' => route('search', ['categories' => ['calzado']]),
+                    'link' => route('search', ['categories' => ['portatiles']]),
                     'model_id' => $home->id,
                     'model_type' => 'App\Models\Page',
 
@@ -42,7 +42,7 @@ class PageSeeder extends Seeder
                     'type' => 'carousel',
                     'sort' => 2,
                     'position' => 'top',
-                    'link' => route('search', ['department' => ['mujer'], 'categories' => ['ropa-interior-y-de-dormir']]),
+                    'link' => route('search', ['categories' => ['portatiles']]),
                     'model_id' => $home->id,
                     'model_type' => 'App\Models\Page',
 
@@ -54,7 +54,7 @@ class PageSeeder extends Seeder
                     'type' => 'carousel',
                     'sort' => 3,
                     'position' => 'top',
-                    'link' => route('search', ['department' => ['nino', 'nina']]),
+                    'link' => route('search', ['categories' => ['portatiles']]),
                     'model_id' => $home->id,
                     'model_type' => 'App\Models\Page',
 
@@ -78,7 +78,7 @@ class PageSeeder extends Seeder
                     'title' => 'banner-3',
                     'type' => 'banner',
                     'position' => 'top',
-                    'link' => route('search', ['categories' => ['camisas']]),
+                    'link' => route('search', ['categories' => ['placas-base']]),
                     'model_id' => $home->id,
                     'model_type' => 'App\Models\Page',
 
@@ -90,7 +90,7 @@ class PageSeeder extends Seeder
                     'title' => 'banner-3',
                     'type' => 'banner',
                     'position' => 'middle',
-                    'link' => route('search', ['offer' => '10']),
+                    'link' => route('search', ['categories' => 'fuentes-de-alimentacion']),
                     'model_id' => $home->id,
                     'model_type' => 'App\Models\Page',
 
@@ -101,7 +101,7 @@ class PageSeeder extends Seeder
                     'title' => 'banner-3',
                     'type' => 'banner',
                     'position' => 'below',
-                    'link' => route('search', ['categories' => ['camisetas']]),
+                    'link' => route('search', ['categories' => ['ratones']]),
                     'model_id' => $home->id,
                     'model_type' => 'App\Models\Page',
 
@@ -113,7 +113,7 @@ class PageSeeder extends Seeder
                     'title' => 'banner-3',
                     'type' => 'banner',
                     'position' => 'middle',
-                    'link' => '/product/vestido-mujer-mc-negro-poliester-30170882-10',
+                    'link' => route('search', ['categories' => ['portatiles']]),
                     'model_id' => $search->id,
                     'model_type' => 'App\Models\Page',
 
@@ -125,7 +125,7 @@ class PageSeeder extends Seeder
                     'title' => 'banner-3',
                     'type' => 'banner',
                     'position' => 'middle',
-                    'link' => route('search', ['categories' => 'blusas']),
+                    'link' => route('offers'),
                     'model_id' => $blog->id,
                     'model_type' => 'App\Models\Page',
 
