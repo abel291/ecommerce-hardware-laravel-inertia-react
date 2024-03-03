@@ -9,15 +9,9 @@ const CardProduct = ({ product, badge = "" }) => {
             className="relative block max-w-md mx-auto rounded-md overflow-hidden transition duration-200 ease-in-out transform hover:-translate-y-1 md:hover:-translate-y-1.5 hover:shadow " >
 
             <div className="h-full flex flex-col">
-                <div className="flex items-center justify-center relative  overflow-hidden md:h-80">
-                    {/* {product.offer > 0 && (
-						<div className="absolute inset-0 z-10 top-3 left-4">
-							<span className=" bg-green-600 border-transparent   text-white inline-flex items-center rounded-md  px-2 py-1 text-xs font-semibold  ring-1 ring-inset" >{product.offer}%</span>
-						</div>
-					)} */}
-                    <img src={product.thumb} alt={product.slug} className="object-cover h-full  rounded-md hover:rounded-b-none " />
+                <div className="h-56 px-2 flex items-center justify-center relative  ">
+                    <img src={product.thumb} alt={product.slug} className="  max-w-full max-h-full" />
                 </div>
-
                 <div className="grow flex flex-col px-4 py-6">
                     <h2 className="text-heading text-sm md:text-sm  ">{product.name}</h2>
 

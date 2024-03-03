@@ -58,7 +58,9 @@ export default function DesktopNavbar({ navigation }) {
                     </div>
 
                     <div className="flex items-center font-medium md:col-span-9 ">
-                        <div className='py-5 pb-3'><DepartmentDropdown /></div>
+                        <div className='py-5 pb-3'>
+                            <DepartmentDropdown />
+                        </div>
                         <div className='hidden xl:block'>
                             <div className=' ml-5 flex gap-x-5'>
                                 {departments.map((item) => (
