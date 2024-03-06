@@ -8,7 +8,7 @@
         <x-form.input-search />
         <div>
             <x-primary-button type="button" x-data=""
-                class="btn-primary block h-full justify-center shadow-sm" x-on:click="$dispatch('modal-create-user')">
+                class="btn btn-primary block h-full justify-center shadow-sm" x-on:click="$dispatch('modal-create-user')">
                 Agregar {{ $label }}
             </x-primary-button>
 
@@ -61,15 +61,15 @@
                         </td>
 
                         <td class="flex items-center justify-end gap-x-3">
-                            <button x-data class="text-indigo-600 font-medium"
+                            <button x-data class="table-button-option"
                                 x-on:click="$dispatch('modal-show-user',{{ $item->id }})">
                                 Ver
                             </button>
-                            <button x-data class="text-indigo-600 font-medium"
+                            <button x-data class="table-button-option"
                                 x-on:click="$dispatch('modal-edit-user',{{ $item->id }})">
                                 Editar
                             </button>
-                            <button x-data class="text-red-600 font-medium "
+                            <button x-data class="table-button-option-danger "
                                 x-on:click="$dispatch('open-modal-confirmation-delete',{{ $item->id }})">Eliminar</button>
                         </td>
 

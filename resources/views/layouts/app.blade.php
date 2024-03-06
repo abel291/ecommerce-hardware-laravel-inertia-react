@@ -17,11 +17,21 @@
 
     @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])
     @livewireStyles
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia(
+                '(prefers-color-scheme: dark)').matches)) {
+            document.querySelector('html').classList.add('dark');
+        } else {
+            document.querySelector('html').classList.remove('dark');
+        }
+    </script>
+
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 </head>
 
-<body class="antialiased text-neutral-800">
+<body class="antialiased text-neutral-800 dark:text-neutral-300">
     <x-toast />
     <div>
         <div class="hidden md:flex fixed top-0 bottom-0">
@@ -29,7 +39,7 @@
         </div>
 
         <div class="md:ml-72">
-            <div class="min-h-screen bg-neutral-100 dark:bg-neutral-900">
+            <div class="min-h-screen bg-neutral-50 dark:bg-neutral-800">
                 @include('layouts.navigation')
 
                 <!-- Page Heading -->
@@ -56,6 +66,7 @@
     </div>
     @livewireScripts
     @stack('js')
+
 </body>
 
 </html>

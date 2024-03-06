@@ -30,7 +30,7 @@ class CategorySeeder extends Seeder
             return Department::factory()->make([
                 'name' => $item,
                 'slug' => $slug,
-                'img' => "img/departments/$slug.png",
+                'img' => "/img/departments/$slug.png",
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

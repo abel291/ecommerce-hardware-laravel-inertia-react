@@ -49,35 +49,55 @@ if(window.innerWidth > 768 && openSidebar ){openSidebar=false}
             <div class="flex items-center ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class=" w-full flex justify-between items-center">
-                            <div class="flex items-center gap-x-3">
-                                <div class="bg-neutral-200 h-8 w-8 rounded flex items-center justify-center">
-                                    <x-heroicon-s-user class="w-4 h-4 text-neutral-500" />
+                        <span class="">
+                            <button type="button" class="w-full flex justify-between items-center">
+
+                                <div class="flex items-center gap-x-3">
+                                    <div class="bg-neutral-200 h-8 w-8 rounded-full flex items-center justify-center">
+
+                                        <x-heroicon-s-user class="w-4 h-4 text-neutral-500" />
+                                    </div>
+                                    <span class="text-sm font-medium leading-6 text-neutral-950 dark:text-white">
+                                        {{ Auth::user()->name }}
+                                    </span>
                                 </div>
-                                <div class="text-sm font-medium leading-6 text-neutral-950 dark:text-white">
-                                    {{ Auth::user()->name }}</div>
-                            </div>
-                            <x-heroicon-m-chevron-down class="ml-3 h-5 w-5 text-neutral-600" />
+                                <div>
+                                    <x-heroicon-m-chevron-down class="ml-3 h-5 w-5 text-neutral-400" />
+                                </div>
 
-                        </button>
-
+                            </button>
+                        </span>
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('dashboard.profile.edit')">
-                            {{ __('Perfil') }}
+                        <x-dropdown-link :href="route('profile.index')">
+
+                            <div class="flex items-center gap-2 whitespace-nowrap">
+                                <x-heroicon-m-user-circle class="h-5 w-5 text-gray-400 dark:text-gray-500" />
+                                <span class="flex-1 truncate text-start text-neutral-700 dark:text-neutral-200">
+                                    Pefil
+                                </span>
+                            </div>
+
                         </x-dropdown-link>
 
-                        <!-- Authentication -->
+                        <x-layouts.dropdown-dark-mode />
+
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Salir') }}
+                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                <div class="flex items-center gap-2 whitespace-nowrap">
+                                    <x-heroicon-s-arrow-left-on-rectangle
+                                        class="h-5 w-5 text-neutral-400 dark:text-neutral-500" />
+                                    <span>
+                                        {{ __('Salir') }}
+                                    </span>
+                                </div>
+
                             </x-dropdown-link>
                         </form>
+
                     </x-slot>
                 </x-dropdown>
             </div>

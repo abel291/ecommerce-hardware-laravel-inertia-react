@@ -4,7 +4,7 @@
     <div class="mb-3">
         <x-input-label for="{{ $model }}">{{ $label }}</x-input-label>
         <label for="{{ $model }}">
-            <div class="btn-primary w-40 cursor-pointer mt-1" wire:loading.class="opacity-50"
+            <div class="btn btn-primary w-40 cursor-pointer mt-1" wire:loading.class="opacity-50"
                 wire:loading.class.remove="cursor-pointer" wire:target="{{ $model }}"">
 
                 <span wire:loading.remove wire:target="{{ $model }}">
@@ -21,7 +21,7 @@
             </div>
 
         </label>
-        <x-input-error :model="$model" />
+        <x-input-error :messages="$errors->get($model)" />
     </div>
     <div class="flex items-start gap-3">
         @if ($saved)

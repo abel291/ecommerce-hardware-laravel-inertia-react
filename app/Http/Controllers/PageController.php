@@ -34,7 +34,7 @@ class PageController extends Controller
         $categories_product_count = Category::withMoreProducts()
             ->limit(12)
             ->get();
-
+        $brands = Brand::where('active', 1)->select('name', 'slug', 'img')->get();
         return Inertia::render('Home/Home', [
             'page' => $page,
             'bestSeller' => ProductResource::collection($bestSeller),
@@ -44,6 +44,7 @@ class PageController extends Controller
             'bannersMedium' => ImageResource::collection($banners_medium),
             'bannersBottom' => ImageResource::collection($banners_bottom),
             'categoriesProductCount' => $categories_product_count,
+            'brands' => $brands,
 
         ]);
     }

@@ -1,18 +1,20 @@
 
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
-export default function ApplicationLogo(className, props) {
+
+export default function ApplicationLogo({ bgIcon = 'bg-primary-600', colorIcon = 'text-white', textColor = 'text-primary-600' }) {
+    const { settings } = usePage().props
     return (
-        <Link href="/" >
-            <div className="flex items-center gap-x-3">
-                <div className="rounded-full h-8 w-8 p-1.5 bg-primary-600">
-                    <ShoppingCartIcon className="w-full h-full text-white" />
-                </div>
-                <div className="text-primary-600 text-lg text-center whitespace-nowrap font-semibold">
-                    RectEcom
-                </div>
-            </div>
-        </Link >
+        <Link className="brand flex items-center" href={route('home')}>
+            <span className={"flex items-center p-1.5 rounded-full mr-2  " + bgIcon}>
+                <ShoppingCartIcon className={'h-7 w-7 ' + colorIcon} />
+            </span>
+            <span className={"text-2xl font-bold " + textColor}>
+                {settings.company.name}
+            </span>
+        </Link>
     );
 }
+
+

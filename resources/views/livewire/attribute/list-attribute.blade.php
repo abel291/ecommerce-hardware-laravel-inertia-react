@@ -13,14 +13,14 @@
         <div class="lg:flex gap-2">
             <div>
                 <x-primary-button type="button" x-data=""
-                    class="btn-primary block h-full justify-center shadow-sm"
+                    class="btn btn-primary block h-full justify-center shadow-sm"
                     x-on:click="$dispatch('modal-create-attribute')">
                     Agregar {{ $label }}
                 </x-primary-button>
             </div>
             <div>
                 <x-primary-button type="button" x-data=""
-                    class="btn-primary block h-full justify-center shadow-sm"
+                    class="btn btn-primary block h-full justify-center shadow-sm"
                     x-on:click="$dispatch('modal-create-attribute-value')">
                     Agregar valor de atributo
                 </x-primary-button>
@@ -65,7 +65,7 @@
                         <td>
                             <x-table.button-options>
                                 <button type="button" x-data
-                                    :key="{{ $attribute->id . $attribute->slug }}"class="text-indigo-600 hover:text-indigo-700 font-medium"
+                                    :key="{{ $attribute->id . $attribute->slug }}"class="text-blue-600 hover:text-blue-700 font-medium"
                                     x-on:click="$dispatch('modal-edit-attribute',{{ $attribute->id }})">
                                     Editar
                                 </button>
@@ -103,8 +103,7 @@
                             </td>
                             <td>
                                 <x-table.button-options>
-                                    <button type="button" x-data
-                                        class="text-indigo-600 hover:text-indigo-700 font-medium"
+                                    <button type="button" x-data class="text-blue-600 hover:text-blue-700 font-medium"
                                         x-on:click="$dispatch('modal-edit-attribute-value',{{ $attribute_value->id }})">
                                         Editar
                                     </button>

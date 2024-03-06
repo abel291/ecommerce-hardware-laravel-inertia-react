@@ -195,7 +195,7 @@
             color: rgb(107 114 128);
         }
 
-        .text-indigo-600 {
+        .text-blue-600 {
 
             color: rgb(88 80 236);
         }
@@ -247,7 +247,7 @@
             ;
         }
 
-        .text-indigo-600 {
+        .text-blue-600 {
             color: rgb(88 80 236);
         }
 

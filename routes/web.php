@@ -10,7 +10,6 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Profile\ProfileOrderController;
-
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Livewire\Attribute\ListAttribute;
@@ -20,8 +19,8 @@ use App\Http\Livewire\Blog\ListAuthor;
 use App\Http\Livewire\Blog\ListPost;
 use App\Http\Livewire\Brand\ListBrand;
 use App\Http\Livewire\Category\ListCategory;
-use App\Http\Livewire\Dashboard\DashboardPage;
 use App\Http\Livewire\DiscountCode\ListDiscountCode;
+use App\Http\Livewire\Home\Dashboard;
 use App\Http\Livewire\Image\ListImage;
 use App\Http\Livewire\Order\ListOrder;
 use App\Http\Livewire\Order\ShowOrder;
@@ -35,7 +34,7 @@ use App\Http\Livewire\User\ListUser;
 use App\Http\Middleware\ProductInSession;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -129,7 +128,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('dashboard')->name('dashboard.')->middleware(['role:admin'])->group(function () {
 
-        Route::get('/', DashboardPage::class)->name('home');
+        Route::get('/', Dashboard::class)->name('home');
         Route::get('/users', ListUser::class)->name('users');
         Route::get('/products', ListProduct::class)->name('products');
         Route::get('/banners', ListBanner::class)->name('banners');

@@ -72,7 +72,7 @@
             </x-form.section-form>
 
             <div class=" flex items-center justify-end gap-x-2	">
-                <a class="btn-secondary" href="{{ route('dashboard.posts') }}">Volver</a>
+                <a class="btn btn-secondary" href="{{ route('dashboard.posts') }}">Volver</a>
                 <x-primary-button wire:loading.attr="disabled" x-show="edit" wire:loading.attr="disabled">
                     {{ $edit ? 'Editar' : 'Guardar' }}
                 </x-primary-button>

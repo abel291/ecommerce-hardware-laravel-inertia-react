@@ -13,7 +13,7 @@
             @endforeach
         </x-form.select>
         <div>
-            {{-- <a class="btn-primary block h-full justify-center shadow-sm" href="{{ route('dashboard.posts-create') }}">
+            {{-- <a class="btn btn-primary block h-full justify-center shadow-sm" href="{{ route('dashboard.posts-create') }}">
                 Crear {{ $label }}
             </a> --}}
         </div>
@@ -54,7 +54,7 @@
                         <td>
                             <div class="flex items-center gap-x-3">
                                 <button type="button" x-data :key="'show_' + {{ $item->id }}"
-                                    class="text-indigo-600 hover:text-indigo-700 font-medium"
+                                    class="text-blue-600 hover:text-blue-700 font-medium"
                                     x-on:click="$dispatch('modal-quantity-product',{{ $item->id }})">
                                     <span class="underline">{{ $item->quantity }}</span>
                                 </button>

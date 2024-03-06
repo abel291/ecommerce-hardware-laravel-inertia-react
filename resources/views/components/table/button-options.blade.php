@@ -2,7 +2,7 @@
 {{-- <div class="flex items-center justify-end gap-x-3">
 
     @if ($buttonShow)
-        <button x-data :key="'show_' + {{ $id }}" class="text-indigo-600 font-medium"
+        <button x-data :key="'show_' + {{ $id }}" class="text-blue-600 font-medium"
             x-on:click="$dispatch('modal-show',{{ $id }})">
             Ver
         </button>
@@ -10,11 +10,11 @@
 
     @if ($buttonEdit)
         @if ($pathEdit)
-            <a href="{{ $pathEdit }}" class="text-indigo-600 font-medium">
+            <a href="{{ $pathEdit }}" class="text-blue-600 font-medium">
                 Editar
             </a>
         @else
-            <button x-data :key="'edit_' + {{ $id }}" class="text-indigo-600 font-medium"
+            <button x-data :key="'edit_' + {{ $id }}" class="text-blue-600 font-medium"
                 x-on:click="$dispatch('modal-edit',{{ $id }})">
                 Editar
             </button>

@@ -31,7 +31,7 @@ export default function DesktopNavbar({ navigation }) {
                 </p>
             )}
 
-            <div className="container pt-4">
+            <div className="container pt-4 text-neutral-700">
                 <div className='relative text-sm grid grid-cols-12 gap-x-5  items-center'>
                     <div className='col-span-3'>
                         <ApplicationLogo />
@@ -67,9 +67,9 @@ export default function DesktopNavbar({ navigation }) {
                                     <Link key={item.slug} href={route('department', item.slug)}
                                         className={
                                             (route().current('department', item.slug)
-                                                ? 'border-primary-600 text-primary-600 '
-                                                : 'border-transparent text-gray-900 ') +
-                                            ' text-gray-900 whitespace-nowrap border-b-2 px-0 py-5 pb-3 font-medium  block '}>
+                                                ? 'border-primary-600 text-primary-600 font-semibold '
+                                                : 'border-transparent  font-medium ') +
+                                            '  whitespace-nowrap border-b-2 px-0 py-5 pb-3  block'}>
                                         {item.name}
                                     </Link>
                                 ))}
@@ -78,8 +78,8 @@ export default function DesktopNavbar({ navigation }) {
                                         className={
                                             (route().current(item.href)
                                                 ? 'border-primary-600 text-primary-600 '
-                                                : 'border-transparent text-gray-900 ') +
-                                            ' text-gray-900 whitespace-nowrap border-b-2 px-0 py-5 pb-3 font-medium  block '}>
+                                                : 'border-transparent  ') +
+                                            '  whitespace-nowrap border-b-2 px-0 py-5 pb-3 font-medium  block '}>
                                         {item.name}
                                     </Link>
                                 ))}
@@ -91,24 +91,24 @@ export default function DesktopNavbar({ navigation }) {
                             <ProfileDropdown>
                                 <button className="inline-flex items-center rounded-md font-medium ">
                                     {auth.user.name}
-                                    <ChevronUpDownIcon className="w-5 h-5 ml-1 -mr-1 text-gray-800" aria-hidden="true" />
+                                    <ChevronUpDownIcon className="w-5 h-5 ml-1 -mr-1 " aria-hidden="true" />
                                 </button>
                             </ProfileDropdown>
                         ) : (
 
                             <>
                                 <div className="flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-4">
-                                    <Link href={route('login')} className=" font-medium text-gray-700 hover:text-gray-800">Acceder</Link>
-                                    <span className="h-6 w-px bg-gray-200" aria-hidden="true"></span>
-                                    <Link href={route('register')} className=" font-medium text-gray-700 hover:text-gray-800">Crear cuenta</Link>
+                                    <Link href={route('login')} className=" font-medium  hover:">Acceder</Link>
+                                    <span className="h-6 w-px bg-neutral-400" aria-hidden="true"></span>
+                                    <Link href={route('register')} className=" font-medium  hover:">Crear cuenta</Link>
                                 </div>
                             </>
                         )}
 
                         <Link href={route('shopping-cart.index')}>
                             <div className='group -m-2 flex items-center p-2'>
-                                <ShoppingBagIcon className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500" />
-                                <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{auth.shoppingCartCount || 0}</span>
+                                <ShoppingBagIcon className="h-6 w-6 flex-shrink-0  group-hover:" />
+                                <span className="ml-2 text-sm font-medium  group-hover:">{auth.shoppingCartCount || 0}</span>
                             </div>
                         </Link>
                     </div>

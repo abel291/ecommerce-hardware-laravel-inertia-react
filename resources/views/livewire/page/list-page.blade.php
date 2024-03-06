@@ -7,7 +7,7 @@
     <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-2 my-4">
         <x-form.input-search />
         <div>
-            <a class="btn-primary block h-full justify-center shadow-sm" href="{{ route('dashboard.posts-create') }}">
+            <a class="btn btn-primary block h-full justify-center shadow-sm" href="{{ route('dashboard.posts-create') }}">
                 Crear {{ $label }}
             </a>
         </div>

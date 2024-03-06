@@ -1,13 +1,13 @@
 @props(['disabled' => false, 'label' => ''])
 @php
-    $id = $attributes->whereStartsWith('wire:model')->first();
+    $model = $attributes->whereStartsWith('wire:model')->first();
 @endphp
 <div>
-    <x-input-label for="{{ $id }}">{{ $label }}</x-input-label>
+    <x-input-label for="{{ $model }}">{{ $label }}</x-input-label>
 
-    <textarea id="{{ $id }}" {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge([
-        'class' => 'input-textarea',
+    <textarea id="{{ $model }}" {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge([
+        'class' => 'textarea-form mt-2',
     ]) !!}></textarea>
 
-    <x-input-error :model="$id" />
+    <x-input-error :messages="$errors->get($model)" />
 </div>

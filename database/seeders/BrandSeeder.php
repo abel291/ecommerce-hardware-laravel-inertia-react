@@ -12,25 +12,25 @@ use Illuminate\Support\Str;
 
 class BrandSeeder extends Seeder
 {
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		Brand::truncate();
-		$products = Storage::json('data/products_with_images.json');
-		$brands = collect($products)->pluck('brand')->unique()->map(function ($item) {
-			$slug = Str::slug($item);
-			return [
-				'name' => $item,
-				'slug' => $slug,
-				'img' => "img/brands/$slug.png",
-				'created_at' => now(),
-				'updated_at' => now(),
-			];
-		})->toArray();
-		Brand::insert($brands);
-	}
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Brand::truncate();
+        $products = Storage::json('data/products_with_images.json');
+        $brands = collect($products)->pluck('brand')->unique()->map(function ($item) {
+            $slug = Str::slug($item);
+            return [
+                'name' => $item,
+                'slug' => $slug,
+                'img' => "/img/brands/$slug.png",
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        })->toArray();
+        Brand::insert($brands);
+    }
 }

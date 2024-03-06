@@ -104,7 +104,7 @@
 
         </div>
         <div class=" flex items-center justify-end gap-x-2 mt-5	">
-            <a class="btn-secondary" href="{{ route('dashboard.products') }}">Volver</a>
+            <a class="btn btn-secondary" href="{{ route('dashboard.products') }}">Volver</a>
             <x-primary-button wire:loading.attr="disabled" wire:loading.attr="disabled">
                 Guardar
             </x-primary-button>

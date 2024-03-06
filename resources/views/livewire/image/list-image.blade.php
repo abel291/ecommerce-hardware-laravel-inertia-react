@@ -8,7 +8,7 @@
 
         <div>
             <x-primary-button type="button" x-data=""
-                class="btn-primary block h-full justify-center shadow-sm" x-on:click="$dispatch('modal-create')">
+                class="btn btn-primary block h-full justify-center shadow-sm" x-on:click="$dispatch('modal-create')">
                 Agregar {{ $label }}
             </x-primary-button>
         </div>

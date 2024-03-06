@@ -18,7 +18,7 @@ module.exports = {
     theme: {
         colors: {
             ...colors,
-            primary: colors.sky,
+            primary: colors.emerald,
         },
 
         container: {

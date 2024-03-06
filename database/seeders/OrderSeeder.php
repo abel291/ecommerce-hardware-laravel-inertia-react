@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Services\CartService;
 use App\Services\OrderService;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class OrderSeeder extends Seeder
@@ -29,9 +30,10 @@ class OrderSeeder extends Seeder
         OrderProduct::whereNotNull('order_id')->delete();
         $users = User::get();
         $discount_codes = DiscountCode::factory()->count(30)->create();
-
+        $faker = \Faker\Factory::create();
         foreach ($users as $user) {
-            for ($i = 0; $i < rand(5, 10); $i++) {
+
+            for ($i = 0; $i < rand(1, 2); $i++) {
 
                 if (rand(0, 2) == 0) {
                     $discount_code = $discount_codes->random();
@@ -82,12 +84,19 @@ class OrderSeeder extends Seeder
                     'user' => $user->only('name', 'address', 'phone', 'email', 'city'),
                 ];
                 $order->user_id = $user->id;
-                $order->save();
+
+                $days = rand(1, 200);
+                $created_at = Carbon::now()->subDays($days);
+                $order->created_at = $created_at;
+                $order->updated_at = $created_at;
+
+                $order->save(['timestamps' => false]);
+
                 $order->order_products()->createMany($orderProducts);
                 $payment = Payment::factory()->make();
                 $order->payment()->save($payment);
 
-                echo "Orden $order->id : $order->code \n";
+                echo "Orden $order->created_at : $order->code \n";
             }
         }
     }

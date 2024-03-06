@@ -10,13 +10,13 @@
     @apply text-sm;
 }
 .table-list tbody {
-    @apply border-t border-neutral-300 divide-y divide-neutral-200;
+    @apply border-t border-neutral-300 dark:border-white/10 divide-y divide-neutral-200 dark:divide-white/10;
 }
 .table-list tbody tr {
-    @apply hover:bg-neutral-50;
+    @apply hover:bg-neutral-50 dark:hover:bg-white/5;
 }
 .table-list tr th {
-    @apply py-3 text-sm font-medium text-left text-neutral-500;
+    @apply py-3 text-sm font-medium text-left text-neutral-500 dark:text-neutral-300;
 }
 .table-list tr td {
     @apply py-2;
@@ -34,26 +34,36 @@
     @apply px-2;
 }
 
+.btn {
+    @apply px-3 py-2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-neutral-300;
+}
+
 .btn-primary {
-    @apply rounded-md bg-neutral-800 px-3.5 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-800 disabled:opacity-30;
+    @apply bg-neutral-800 text-neutral-50  hover:bg-neutral-800/90 dark:bg-primary-600  dark:hover:bg-primary-700;
 }
 
 .btn-secondary {
-    @apply rounded-md bg-white px-3.5 py-2 text-sm font-semibold text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-50 capitalize;
+    @apply bg-neutral-100 text-neutral-900  hover:bg-neutral-100/80 dark:bg-neutral-700 dark:text-white dark:hover:bg-neutral-700/40;
 }
 @layer base {
-    .select-form,
     .input-form,
-    .input-textarea {
-        @apply block w-full py-1.5 text-sm border-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 focus:border-neutral-500 dark:focus:border-neutral-600 focus:ring-neutral-700 dark:focus:ring-neutral-600 rounded-md mt-1;
+    .select-form,
+    .textarea-form {
+        @apply text-sm block w-full rounded-md border-0 py-2 text-neutral-800 dark:text-white ring-1 ring-inset ring-neutral-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-primary-700 sm:leading-6 disabled:bg-neutral-200 dark:bg-neutral-700 dark:ring-white/10 dark:disabled:bg-neutral-600 dark:focus:ring-primary-700 dark:placeholder:text-neutral-200;
     }
     .input-radio {
-        @apply h-4 w-4 border-neutral-300 text-indigo-600 focus:ring-indigo-600;
+        @apply h-4 w-4 border-primary-700 text-primary-700 focus:ring-primary-800;
     }
     .input-checkbox {
-        @apply h-4 w-4 rounded border-neutral-300 text-indigo-600 focus:ring-indigo-600;
+        @apply h-4 w-4 rounded border-primary-700 text-primary-700 focus:ring-primary-800;
     }
     .title {
         @apply text-lg leading-6 font-semibold;
+    }
+    .table-button-option-danger {
+        @apply text-red-600 hover:text-red-700 font-medium dark:text-red-500 dark:hover:text-red-600;
+    }
+    .table-button-option {
+        @apply text-blue-600 hover:text-blue-700 font-medium dark:text-blue-400 dark:hover:text-blue-500;
     }
 }

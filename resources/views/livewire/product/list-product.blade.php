@@ -17,7 +17,8 @@
         </div>
 
         <div>
-            <a href="{{ route('dashboard.products-create') }}" class="btn-primary block h-full justify-center shadow-sm">
+            <a href="{{ route('dashboard.products-create') }}"
+                class="btn btn-primary block h-full justify-center shadow-sm">
                 Agregar {{ $label }}
             </a>
         </div>
@@ -85,7 +86,7 @@
 
                                 <x-dropdown>
                                     <x-slot name="trigger">
-                                        <button class="text-indigo-600 font-medium flex items-center">
+                                        <button class="text-blue-600 font-medium flex items-center">
                                             <span>Editar</span>
                                             <x-heroicon-m-chevron-down class="h-4 w-4 ml-0.5" />
                                         </button>

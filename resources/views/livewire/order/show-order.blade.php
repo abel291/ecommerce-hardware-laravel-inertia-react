@@ -105,6 +105,6 @@
 
     </x-content>
     <div class="mt-5 flex items-center justify-end gap-x-2">
-        <a class="btn-secondary" href="{{ route('dashboard.orders') }}">Volver</a>
+        <a class="btn btn-secondary" href="{{ route('dashboard.orders') }}">Volver</a>
     </div>
 </div>

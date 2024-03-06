@@ -1,4 +1,4 @@
-@props(['title', 'content', 'footer', 'size' => 'lg'])
+@props(['title', 'content', 'footer' => null, 'size' => 'lg'])
 @php
     switch ($size) {
         case 'sm':
@@ -25,37 +25,38 @@
         </div>
 
         <div x-show="show"
-            class="fixed inset-0 flex justify-center items-start transform transition-all px-4 pt-6 sm:px-4  overflow-y-auto max-h-screen"
+            class="fixed inset-0 flex justify-center items-center transform transition-all px-4 pt-6 sm:px-4 overflow-y-auto max-h-screen"
             x-transition:enter="ease-out duration-300"
             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200"
             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
 
-            <div class="bg-white rounded-lg overflow-hidden shadow-xl sm:w-full {{ $modalSize }} ">
+            <div
+                class="bg-white dark:bg-neutral-800 rounded-lg overflow-hidden shadow-xl sm:w-full {{ $modalSize }} ">
 
 
-                <div class="p-6">
-                    <div class="title">
+                <div class="p-6 ">
+                    <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
                         {{ $title }}
-                    </div>
+                    </h2>
 
                     <div class="mt-4 content-modal relative ">
-                        <div wire:loading.flex {{ $attributes->whereStartsWith('wire:target') }}>
+                        {{-- <div wire:loading.flex {{ $attributes->whereStartsWith('wire:target') }}>
                             <x-spinner-loading class="absolute top-2 left-2 z-10">Cargando..
                             </x-spinner-loading>
-                        </div>
+                        </div> --}}
                         <div wire:loading.class="blur-sm" {{ $attributes->whereStartsWith('wire:target') }}>
                             {{ $content }}
                         </div>
                     </div>
-                    <div class="mt-6 text-right">
-                        {{ $footer }}
-                    </div>
                 </div>
 
-
-
+                @if ($footer)
+                    <div class="px-6 py-4  text-right">
+                        {{ $footer }}
+                    </div>
+                @endif
             </div>
 
 

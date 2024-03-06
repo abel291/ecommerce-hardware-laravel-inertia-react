@@ -179,11 +179,11 @@ class Product extends Model
                 });
             })
 
-            // ->when($filters['brands'], function (Builder $query) use ($filters) {
-            // 	$query->whereHas('brand', function (Builder $sub_query) use ($filters) {
-            // 		$sub_query->where('slug', $filters['brands']);
-            // 	});
-            // })
+            ->when($filters['brands'], function (Builder $query) use ($filters) {
+                $query->whereHas('brand', function (Builder $sub_query) use ($filters) {
+                    $sub_query->where('slug', $filters['brands']);
+                });
+            })
 
             ->when($filters['price_min'], function (Builder $query) use ($filters) {
                 $query->where('price_offer', '>=', $filters['price_min']);

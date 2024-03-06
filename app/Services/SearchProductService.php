@@ -12,138 +12,140 @@ use Illuminate\Support\Facades\DB;
 class SearchProductService
 
 {
-	public $filters = [];
-	public function __construct(array $filters)
-	{
-		$this->filters = $filters;
-	}
-	public  function getFilterDepartments()
-	{
-		$newFilters = $this->filters;
+    public $filters = [];
+    public function __construct(array $filters)
+    {
+        $this->filters = $filters;
+    }
+    public  function getFilterDepartments()
+    {
+        $newFilters = $this->filters;
 
-		$newFilters['departments'] = [];
-		$departments = Department::select('id', 'name', 'slug')
-			->active()
-			->withCount(['products' => function ($query) use ($newFilters) {
-				$query->withFilters($newFilters);
-			}])
-			->whereHas('products', function ($query) use ($newFilters) {
-				$query->withFilters($newFilters);
-			})
-			->get();
+        $newFilters['departments'] = [];
+        $departments = Department::select('id', 'name', 'slug')
+            ->active()
+            ->withCount(['products' => function ($query) use ($newFilters) {
+                $query->withFilters($newFilters);
+            }])
+            ->whereHas('products', function ($query) use ($newFilters) {
+                $query->withFilters($newFilters);
+            })
+            ->get();
 
-		$departments = $this->assignSelected($departments, $this->filters['departments']);
+        $departments = $this->assignSelected($departments, $this->filters['departments']);
 
-		return $departments;
-	}
+        return $departments;
+    }
 
-	public function getFilterCategories()
-	{
-		$newFilters = $this->filters;
+    public function getFilterCategories()
+    {
+        $newFilters = $this->filters;
 
-		$newFilters['categories'] = [];
+        $newFilters['categories'] = [];
 
-		$categories = Category::select('id', 'name', 'slug')->where('type', 'product')
-			->active()
-			->withCount(['products' => function ($query) use ($newFilters) {
-				$query->withFilters($newFilters);
-			}])
-			->whereHas('products', function ($query) use ($newFilters) {
-				$query->withFilters($newFilters);
-			})
-			->get();
+        $categories = Category::select('id', 'name', 'slug')->where('type', 'product')
+            ->active()
+            ->withCount(['products' => function ($query) use ($newFilters) {
+                $query->withFilters($newFilters);
+            }])
+            ->whereHas('products', function ($query) use ($newFilters) {
+                $query->withFilters($newFilters);
+            })
+            ->get();
 
-		$categories = $this->assignSelected($categories, $this->filters['categories']);
-		return $categories;
-	}
+        $categories = $this->assignSelected($categories, $this->filters['categories']);
+        return $categories;
+    }
 
-	public function getFilterAttributes()
-	{
-		$newFilters = $this->filters;
+    public function getFilterAttributes()
+    {
+        $newFilters = $this->filters;
 
-		//$newFilters['attributes'] = [];
+        //$newFilters['attributes'] = [];
 
-		$attributes = Attribute::select('name', 'slug')->groupBy('name', 'slug')
-			->whereHas('product', function ($query) use ($newFilters) {
-				$query->withFilters($newFilters);
-			})->get();
+        $attributes = Attribute::select('name', 'slug')->groupBy('name', 'slug')
+            ->whereHas('product', function ($query) use ($newFilters) {
+                $query->withFilters($newFilters);
+            })->get();
 
-		foreach ($attributes as $attribute) {
-			$attribute_values = AttributeValue::select('name', 'slug', DB::raw('count(*) as products_count'))
-				->whereHas('attribute', function ($query) use ($attribute) {
-					$query->where('slug', $attribute->slug);
-				})
-				->whereHas('product', function ($query) use ($newFilters) {
-					$query->withFilters($newFilters);
-				})
-				->groupBy('name', 'slug')->orderBy('products_count', 'desc')->limit(10)->get();
+        foreach ($attributes as $attribute) {
+            $attribute_values = AttributeValue::select('name', 'slug', DB::raw('count(*) as products_count'))
+                ->whereHas('attribute', function ($query) use ($attribute) {
+                    $query->where('slug', $attribute->slug);
+                })
+                ->whereHas('product', function ($query) use ($newFilters) {
+                    $query->withFilters($newFilters);
+                })
+                ->groupBy('name', 'slug')->orderBy('products_count', 'desc')->limit(10)->get();
 
 
-			if (empty($this->filters['attributes'][$attribute->slug])) {
-				$attributesSelected = [];
-			} else {
-				$attributesSelected = $this->filters['attributes'][$attribute->slug];
-			}
+            if (empty($this->filters['attributes'][$attribute->slug])) {
+                $attributesSelected = [];
+            } else {
+                $attributesSelected = $this->filters['attributes'][$attribute->slug];
+            }
 
-			$attribute_values = $this->assignSelected($attribute_values, $attributesSelected);
+            $attribute_values = $this->assignSelected($attribute_values, $attributesSelected);
 
-			$attribute->setRelation('attribute_values', $attribute_values);
-		}
+            $attribute->setRelation('attribute_values', $attribute_values);
+        }
 
-		return $attributes;
-	}
-	// public static function getFilterBrands($filters)
-	// {
-	// 	$filters['brands'] = [];
-	// 	//dd($filters);
-	// 	$brands = Brand::where('active', 1)
-	// 		->select('id', 'name', 'slug')
-	// 		->withCount(['products' => function ($query) {
-	// 			$query->withFilters($filters);
-	// 		}])
-	// 		->whereHas('products', function ($query) {
-	// 			$query->withFilters($filters);
-	// 		})
-	// 		->orderBy('name')
-	// 		->get();
+        return $attributes;
+    }
+    public function getFilterBrands()
+    {
+        $newFilters = $this->filters;
+        $newFilters['brands'] = [];
 
-	// 	return $brands;
-	// }
+        $brands = Brand::where('active', 1)
+            ->select('id', 'name', 'slug')
+            ->withCount(['products' => function ($query) use ($newFilters) {
+                $query->withFilters($newFilters);
+            }])
+            ->whereHas('products', function ($query) use ($newFilters) {
+                $query->withFilters($newFilters);
+            })
+            ->orderBy('name')
+            ->get();
 
-	public function assignSelected($collection, $itemsSelected = [])
-	{
-		$collection = $collection->map(function ($item) use ($itemsSelected) {
-			$item->selected = in_array($item->slug, $itemsSelected);
-			return $item;
-		});
+        $brands = $this->assignSelected($brands, $this->filters['brands']);
+        return $brands;
+    }
 
-		return $collection;
-	}
+    public function assignSelected($collection, $itemsSelected = [])
+    {
+        $collection = $collection->map(function ($item) use ($itemsSelected) {
+            $item->selected = in_array($item->slug, $itemsSelected);
+            return $item;
+        });
 
-	public static function generateBreadcrumb($filters)
-	{
+        return $collection;
+    }
 
-		$breadcrumb = [];
+    public static function generateBreadcrumb($filters)
+    {
 
-		$categories_slug = [...$filters['department'], ...$filters['category']];
+        $breadcrumb = [];
 
-		$categories = Category::select('id', 'name', 'slug')->active()->whereIn('slug', $categories_slug)->get();
+        $categories_slug = [...$filters['department'], ...$filters['category']];
 
-		$data = [
-			'department' => $categories->whereIn('slug', $filters['department']),
-			'category' => $categories->whereIn('slug', $filters['category']),
-			'brands' => Brand::select('id', 'name', 'slug')->active()->whereIn('slug', $filters['brands'])->get(),
-		];
+        $categories = Category::select('id', 'name', 'slug')->active()->whereIn('slug', $categories_slug)->get();
 
-		foreach ($data as $key => $items) {
-			foreach ($items as $key => $item) {
-				$breadcrumb[] = [
-					'title' => $item->name,
-					'path' => route('search', [$key => $item->slug]),
-				];
-			}
-		}
+        $data = [
+            'department' => $categories->whereIn('slug', $filters['department']),
+            'category' => $categories->whereIn('slug', $filters['category']),
+            'brands' => Brand::select('id', 'name', 'slug')->active()->whereIn('slug', $filters['brands'])->get(),
+        ];
 
-		return $breadcrumb;
-	}
+        foreach ($data as $key => $items) {
+            foreach ($items as $key => $item) {
+                $breadcrumb[] = [
+                    'title' => $item->name,
+                    'path' => route('search', [$key => $item->slug]),
+                ];
+            }
+        }
+
+        return $breadcrumb;
+    }
 }

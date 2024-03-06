@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
@@ -33,10 +34,19 @@ class UserSeeder extends Seeder
                     $user->assignRole('client');
                 });
         } else {
-            User::factory()->count(10)->create()
-                ->each(function (User $user) {
-                    $user->assignRole('client');
-                });
+
+            for ($i = 0; $i < 100; $i++) {
+
+                $date = fake()->dateTimeInInterval('-12 month', 'now');
+
+                $user = User::factory()->make();
+                $days = rand(1, 360);
+                $created_at = Carbon::now()->subDays($days);
+                $user->created_at = $created_at;
+                $user->updated_at = $created_at;
+                $user->save(['timestamps' => false]);
+                $user->assignRole('client');
+            }
         }
     }
 }
