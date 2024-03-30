@@ -54,7 +54,6 @@ if(window.innerWidth > 768 && openSidebar ){openSidebar=false}
 
                                 <div class="flex items-center gap-x-3">
                                     <div class="bg-neutral-200 h-8 w-8 rounded-full flex items-center justify-center">
-
                                         <x-heroicon-s-user class="w-4 h-4 text-neutral-500" />
                                     </div>
                                     <span class="text-sm font-medium leading-6 text-neutral-950 dark:text-white">

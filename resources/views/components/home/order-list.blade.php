@@ -10,7 +10,7 @@
             Ver mas
         </a>
     </div>
-    <div class="mt-10">
+    <div class="mt-6">
         <table class="table-list w-full table-auto text-sm">
             @php
                 $headList = ['Codigo', 'Estado', 'Fechas de pago', 'Total'];

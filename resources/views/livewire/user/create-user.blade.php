@@ -38,7 +38,7 @@
                                 <option value="{{ $item->name }}">{{ $item->name }}</option>
                             @endforeach
                         </x-form.select>
-                        <x-input-error model="role" />
+                        <x-input-error :messages="$errors->get('role')" />
                     </div>
                     <div class="lg:col-span-3">
                         <x-form.input-label-error type="password" wire:model.defer="password">Contraseña

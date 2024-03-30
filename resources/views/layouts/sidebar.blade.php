@@ -68,7 +68,7 @@
     ];
     $navigation_3 = [
         [
-            'title' => 'Setting',
+            'title' => 'Ajustes',
             'route' => 'dashboard.settings',
             'icon' => 'heroicon-m-cog-6-tooth',
         ],

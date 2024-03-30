@@ -1,9 +1,9 @@
 <a href="/" target='_blank'>
-    <div class="flex items-center gap-x-3">
-        <div class="rounded-full h-10 w-10 p-2 bg-neutral-800">
-            <x-heroicon-m-shopping-cart class="w-full h-full text-white" />
+    <div class="flex items-center">
+        <div class="flex items-center p-2 rounded-full mr-2   bg-neutral-800">
+            <x-heroicon-m-shopping-cart class="h-6 w-6 text-white" />
         </div>
-        <div {{ $attributes->class('text-blue-600 text-lg text-center whitespace-nowrap font-light font-semibold') }}>
+        <div {{ $attributes->class('text-2xl font-bold') }}>
             {{ config('app.name') }}
         </div>
     </div>
