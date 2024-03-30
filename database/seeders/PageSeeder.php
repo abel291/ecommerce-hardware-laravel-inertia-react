@@ -14,12 +14,12 @@ class PageSeeder extends Seeder
     public function run(): void
     {
         Page::truncate();
-        $home = Page::factory()->create(['type' => 'home', 'title' => 'Home']);
-        $offers = Page::factory()->create(['type' => 'offers', 'title' => 'Ofetas']);
+        Page::factory()->create(['type' => 'offers', 'title' => 'Ofetas']);
+        Page::factory()->create(['type' => 'contact', 'title' => 'Contáctenos']);
 
-        $contact = Page::factory()->create(['type' => 'contact', 'title' => 'Contáctenos']);
-        $search = Page::factory()->create(['type' => 'search', 'title' => 'Busqueda']);
-        $blog = Page::factory()->create(['type' => 'blog', 'title' => 'Desde el blog']);
+        $home = Page::factory()->create(['type' => 'home', 'meta_title' => 'Inicio', 'title' => 'Home']);
+        $search = Page::factory()->create(['type' => 'search',  'meta_title' => 'Busqueda', 'title' => 'Busqueda']);
+        $blog = Page::factory()->create(['type' => 'blog', 'meta_title' => 'Blog', 'title' => 'Desde el blog']);
 
         $images =
             [
@@ -30,7 +30,7 @@ class PageSeeder extends Seeder
                     'type' => 'carousel',
                     'sort' => 1,
                     'position' => 'top',
-                    'link' => route('search', ['categories' => ['portatiles']]),
+                    'link' => route('product', 'portatil-asus-vivobook-m1603qa-r5-5600h-16gb-512ssd-16-fhd-color-quiet-blue33885'),
                     'model_id' => $home->id,
                     'model_type' => 'App\Models\Page',
 
@@ -49,12 +49,10 @@ class PageSeeder extends Seeder
                 ],
                 [
                     'img' => '/img/banners/banner-carousel-3.jpg',
-                    'alt' => 'banner-3',
-                    'title' => 'banner-3',
                     'type' => 'carousel',
                     'sort' => 3,
                     'position' => 'top',
-                    'link' => route('search', ['categories' => ['portatiles']]),
+                    'link' => route('product', 'portatil-asus-e1504fa-nj474-ryzen-5-7520u-ram-16gb-ssd-512gb-color-negro14523'),
                     'model_id' => $home->id,
                     'model_type' => 'App\Models\Page',
 
@@ -63,19 +61,15 @@ class PageSeeder extends Seeder
                 ///
                 [
                     'img' => '/img/banners/banner-home-9.jpg',
-                    'alt' => 'banner-3',
-                    'title' => 'banner-3',
                     'type' => 'banner',
                     'position' => 'top',
-                    'link' => route('search', ['categories' => ['pantalones']]),
+                    'link' => route('search', ['categories' => ['portatiles']]),
                     'model_id' => $home->id,
                     'model_type' => 'App\Models\Page',
 
                 ],
                 [
                     'img' => '/img/banners/banner-home-10.jpg',
-                    'alt' => 'banner-3',
-                    'title' => 'banner-3',
                     'type' => 'banner',
                     'position' => 'top',
                     'link' => route('search', ['categories' => ['placas-base']]),
@@ -86,22 +80,18 @@ class PageSeeder extends Seeder
                 ///
                 [
                     'img' => '/img/banners/banner-section-1.jpg',
-                    'alt' => 'banner-3',
-                    'title' => 'banner-3',
                     'type' => 'banner',
                     'position' => 'middle',
-                    'link' => route('search', ['categories' => 'fuentes-de-alimentacion']),
+                    'link' => route('search', ['categories' => ['fuentes-de-alimentacion']]),
                     'model_id' => $home->id,
                     'model_type' => 'App\Models\Page',
 
                 ],
                 [
                     'img' => '/img/banners/banner-section-2.jpg',
-                    'alt' => 'banner-3',
-                    'title' => 'banner-3',
                     'type' => 'banner',
                     'position' => 'below',
-                    'link' => route('search', ['categories' => ['ratones']]),
+                    'link' => route('product', 'mouse-gamer-cetus-vsg-color-negro3515'),
                     'model_id' => $home->id,
                     'model_type' => 'App\Models\Page',
 
@@ -109,11 +99,9 @@ class PageSeeder extends Seeder
 
                 [
                     'img' => '/img/banners/banner-sidebar-search.jpg',
-                    'alt' => 'banner-3',
-                    'title' => 'banner-3',
                     'type' => 'banner',
                     'position' => 'middle',
-                    'link' => route('search', ['categories' => ['portatiles']]),
+                    'link' => route('product', 'portatil-asus-e1504fa-nj474-ryzen-5-7520u-ram-16gb-ssd-512gb-color-negro14523'),
                     'model_id' => $search->id,
                     'model_type' => 'App\Models\Page',
 
@@ -121,8 +109,6 @@ class PageSeeder extends Seeder
                 //
                 [
                     'img' => '/img/banners/banner-blog.jpg',
-                    'alt' => 'banner-3',
-                    'title' => 'banner-3',
                     'type' => 'banner',
                     'position' => 'middle',
                     'link' => route('offers'),
